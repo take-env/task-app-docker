@@ -39,7 +39,7 @@ task-app-docker
 
 **Docker Desktop がインストールされていること**
 </br>
-ない場合は以下からダウンロード ↓↓↓</br>
+※ない場合は以下からダウンロード ↓↓↓</br>
 https://www.docker.com/
 
 #### 1.リポジトリのクローン
@@ -61,27 +61,30 @@ docker compose up -d --build
 
 ```
 
-#### 3.環境構築ファイルの作成
+#### 3.laravel の依存関係をインストール
 
 ```
+
 #ディレクトリの移動
 cd api
 
 #apiコンテナに入る
 docker compose exec api sh
 
-# .env ファイルのコピー、keyの生成
-cp .env.example .env
-php artisan key:generate
-
-```
-
-#### 4.laravel の依存関係をインストール
-
-```
-
 #composerインストール
 composer install
+
+```
+
+#### 4.環境構築ファイルの作成
+
+```
+
+# .env ファイルのコピー
+cp .env.example .env
+
+#laravelの秘密鍵の生成
+php artisan key:generate
 
 ```
 
@@ -89,8 +92,10 @@ composer install
 
 ```
 
-# DB マイグレーション
+# DB マイグレーション(コンテナに入ったまま)
 php artisan migrate
+
+#コンテナから出る
 exit
 
 ```
@@ -103,10 +108,12 @@ exit
 cd ..//client
 
 #clientコンテナに入る
-docker compose exec client bash
+docker compose exec client sh
 
 #依存関係インストール
 npm install
+
+#コンテナから出る
 exit
 
 ```

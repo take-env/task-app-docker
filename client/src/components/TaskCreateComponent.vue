@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import api from "../lib/axios.js";
+
 export default {
   data: function () {
     return {
@@ -49,7 +51,7 @@ export default {
   },
   methods: {
     submit() {
-      axios.post("/tasks", this.task).then((res) => {
+      api.post("/tasks", this.task).then((res) => {
         this.$router.push({ name: "task.list" });
       });
     },
