@@ -6,6 +6,7 @@ services:
       - "80:80"
     volumes:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./api:/var/www/api:ro
     depends_on:
       - api
       - client
