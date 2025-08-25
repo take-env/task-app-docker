@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["../.vscode/src/*"]
-    }
-  },
-  "exclude": ["../.vscode/node_modules", "dist"]
-}
