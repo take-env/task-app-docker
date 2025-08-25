@@ -68,11 +68,12 @@ docker compose up -d --build
 #ディレクトリの移動
 cd api
 
-#apiコンテナに入る
-docker compose exec api sh
+```
 
-#composerインストール
-composer install
+```
+
+#apiコンテナに入る
+docker compose exec api composer install
 
 ```
 
@@ -82,6 +83,10 @@ composer install
 
 # .env ファイルのコピー
 cp .env.example .env
+
+```
+
+```
 
 #laravelの秘密鍵の生成
 php artisan key:generate
@@ -95,6 +100,10 @@ php artisan key:generate
 # DB マイグレーション(コンテナに入ったまま)
 php artisan migrate
 
+```
+
+```
+
 #コンテナから出る
 exit
 
@@ -107,11 +116,16 @@ exit
 #ディレクトリの移動
 cd ..//client
 
-#clientコンテナに入る
-docker compose exec client sh
+```
 
-#依存関係インストール
-npm install
+```
+
+#clientコンテナでnpmのインストール
+docker compose exec client npm install
+
+```
+
+```
 
 #コンテナから出る
 exit
@@ -121,7 +135,7 @@ exit
 #### 7.アクセス確認
 
 - **フロントエンド**
-  http://localhost:3000
+  http://localhost
 
 - **バックエンド**
-  http://localhost:3000/api/tasks
+  http://localhost/api/tasks
