@@ -56,9 +56,10 @@ const router = useRouter();
 const props = defineProps({
   taskId: { type: String, required: true },
 });
-const task = ref({ id: "", title: "", content: "", person_in_charge: "" });
+const task = ref({});
 const getTask = async () => {
   const { data } = await api.get(`/tasks/${props.taskId}`);
+
   task.value = data;
 };
 

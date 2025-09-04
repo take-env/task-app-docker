@@ -43,7 +43,7 @@
 <script setup>
 import api from "../lib/axios.js";
 import { ref } from "vue";
-const task = ref({ id: "", title: "", content: "", person_in_charge: "" });
+const task = ref({});
 
 import { useRouter } from "vue-router";
 const router = useRouter();

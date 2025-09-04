@@ -47,26 +47,30 @@
   </form>
 </template>
 
-<script setup>
-import api from "../lib/axios.js";
-import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
-
-const router = useRouter();
-const props = defineProps({
-  taskId: { type: String, required: true },
-});
-const task = ref({ id: "", title: "", content: "", person_in_charge: "" });
-const getTask = async () => {
-  const { data } = await api.get(`/tasks/${props.taskId}`);
-  task.value = data;
-};
-
-onMounted(() => {
-  getTask();
-});
-const submit = async () => {
-  await api.put(`/tasks/${props.taskId}`, task.value);
-  await router.push({ name: "task.list" });
+<script>
+export default {
+  props: {
+    taskId: String,
+  },
+  data: function () {
+    return {
+      task: {},
+    };
+  },
+  methods: {
+    getTask() {
+      axios.get("/tasks/" + this.taskId).then((res) => {
+        this.task = res.data;
+      });
+    },
+    submit() {
+      axios.put("/tasks/" + this.taskId, this.task).then((res) => {
+        this.$router.push({ name: "task.list" });
+      });
+    },
+  },
+  mounted() {
+    this.getTask();
+  },
 };
 </script>

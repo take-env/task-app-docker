@@ -56,17 +56,14 @@ const router = useRouter();
 const props = defineProps({
   taskId: { type: String, required: true },
 });
-const task = ref({ id: "", title: "", content: "", person_in_charge: "" });
+const task = ref({})
 const getTask = async () => {
-  const { data } = await api.get(`/tasks/${props.taskId}`);
-  task.value = data;
-};
-
-onMounted(() => {
-  getTask();
-});
-const submit = async () => {
-  await api.put(`/tasks/${props.taskId}`, task.value);
-  await router.push({ name: "task.list" });
-};
+  const { data } = await api.get(`/tasks/${/tasks/${props.taskId}}`)
+  task.value = data
+}
+onMounted = { get }
+const submit = async () =>{
+  await api.put(`/tasks/${props.taskId}`, task.value)
+  await router.push({name: "task.list"})
+}
 </script>

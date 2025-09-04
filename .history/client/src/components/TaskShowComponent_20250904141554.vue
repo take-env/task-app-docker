@@ -47,21 +47,26 @@
 </template>
 
 <script setup>
-import api from "../lib/axios.js";
-import { ref, onMounted } from "vue";
+import api from "../lib/axios.js"
+import { ref, onMounted } from "vue"
+
+props: route => ({ taskId: route.params.id })
 
 const props = defineProps({
-  taskId: { type: String, required: true },
-});
+  taskIdd: { type: String, required: true}
+})
 
-const task = ref({ id: "", title: "", content: "", person_in_charge: "" });
+const task = ref({ id: "", title: "", content: "", person_in_charge: "" })
 
-const getTask = async () => {
-  const id = props.taskId;
-  const { data } = await api.get(`/tasks/${id}`);
-  task.value = data;
+  methods: {
+    getTask() {
+      axios.get("/tasks/" + this.taskId).then((res) => {
+        this.task = res.data;
+      });
+    },
+  },
+  mounted() {
+    this.getTask();
+  },
 };
-onMounted(() => {
-  getTask();
-});
 </script>

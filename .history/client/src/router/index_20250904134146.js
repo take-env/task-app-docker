@@ -1,7 +1,7 @@
 // client/src/router/index.js
 import { createRouter, createWebHistory } from "vue-router";
 import TaskListComponent from "../components/TaskListComponent.vue";
-import TaskShowComponent from "../components/TaskShowComponent.vue";
+import TaskDetailComponent from "../components/TaskDetailComponent.vue";
 import TaskCreateComponent from "../components/TaskCreateComponent.vue";
 import TaskEditComponent from "../components/TaskEditComponent.vue";
 
@@ -11,19 +11,10 @@ const routes = [
     path: "/tasks/create",
     name: "task.create",
     component: TaskCreateComponent,
+    props: true,
   },
-  {
-    path: "/tasks/:id",
-    name: "task.show",
-    component: TaskShowComponent,
-    props: (route) => ({ taskId: route.params.id }),
-  },
-  {
-    path: "/tasks/:id/edit",
-    name: "task.edit",
-    component: TaskEditComponent,
-    props: (route) => ({ taskId: route.params.id }),
-  },
+  { path: "/tasks/:id", name: "task.detail", component: TaskDetailComponent },
+  { path: "/tasks/:id/edit", name: "task.edit", component: TaskEditComponent },
   { path: "/", redirect: "/tasks" },
 ];
 

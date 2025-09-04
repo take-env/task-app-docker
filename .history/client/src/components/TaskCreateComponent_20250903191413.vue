@@ -41,19 +41,14 @@
 </template>
 
 <script setup>
-import api from "../lib/axios.js";
-import { ref } from "vue";
-const task = ref({ id: "", title: "", content: "", person_in_charge: "" });
+import { ref } from "vue"
+const task = ref({})
 
-import { useRouter } from "vue-router";
-const router = useRouter();
-
-async function submit() {
-  try {
-    await api.post("/tasks", task.value);
-    await router.push({ name: "task.list" });
-  } catch (e) {
-    console.error(e?.message ?? e);
+methods: {
+  submit() {
+    api.post("/tasks", this.task).then((res) => {
+      this.$router.push({ name: "task.list"});
+    })
   }
 }
 </script>

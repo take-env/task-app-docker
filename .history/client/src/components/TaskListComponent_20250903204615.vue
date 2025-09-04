@@ -12,7 +12,7 @@ onMounted(async () => {
     const res = await api.get("/tasks");
     tasks.value = res.data;
   } catch (e) {
-    error.value = e;
+    error.value = e?.message ??
   } finally {
     loading.value = false;
   }

@@ -50,8 +50,10 @@
 import api from "../lib/axios.js";
 import { ref, onMounted } from "vue";
 
+props: (route) => ({ taskId: route.params.id });
+
 const props = defineProps({
-  taskId: { type: String, required: true },
+  taskIdd: { type: String, required: true },
 });
 
 const task = ref({ id: "", title: "", content: "", person_in_charge: "" });

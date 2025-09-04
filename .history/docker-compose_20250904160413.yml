@@ -56,14 +56,13 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
     restart: always
-
   phpmyadmin:
     image: phpmyadmin
     depends_on:
       - db
     environment:
-      - PMA_HOST=db
-      - PMA_PORT=3306
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=db
       - PMA_USER=root
       - PMA_PASSWORD=secret
     ports:
