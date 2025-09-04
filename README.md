@@ -140,3 +140,6 @@ exit
 
 - **バックエンド**
   http://localhost/api/tasks
+
+- **データベース**
+  http://localhost:3001/
