@@ -10,6 +10,7 @@
 | Docker               | 28.0.4,    |
 | Laravel              | 12.0       |
 | MySQL                | 8.0        |
+| phpMyAdmin           | 5.2.2      |
 | Vue                  | 7.1.1      |
 | Vite                 | 3.5.18     |
 
